@@ -1,3 +1,33 @@
+# 150529
+
+- Jeder nutzer kann eine liste von n Kontakten aktiv halten.
+- Kontakte kommen ueber Keyphrase oder Name Telling zustande.
+- Keyphrase ist gleichz. "Zugangssicherung"
+
+# 150529
+
+- local: "telefonbuch"
+- dtt ("distributed time table"): history
+- hash: history hash
+
+# 150529
+
+- activity: Introducing
+  Jeder Nutzer kodiert seine WebRTC-ID in Redphone-aehnliche
+  Wortkombinationen. Diese koennen genutzt werden um zum jeweiligen
+  Peer zu verbinden.
+    - Connection house keeping. Only hold n connections. Drop
+      judging by the date of the last connection.
+- activity: Sync (stream subscription)
+  $msg = {
+      - str: [verb]
+      * Name asking (introduce new peers to known)
+      * History hash
+        - binary-search-algorithm
+    - fn: [callback] }
+- activity: Send (callback calling :)
+  $msg
+
 # 150526
 
 generate keys
