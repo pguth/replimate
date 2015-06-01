@@ -10,9 +10,10 @@ describe('App start', () => {
     let main = require('./index.js')
     assert(
       main.noop('[app started]')
-      === "[app started] lol")
+      === "[app started]")
   })
 })
+
 
 
 

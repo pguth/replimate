@@ -8,6 +8,14 @@ var mocha = require('gulp-mocha')
 var src = 'index.js'
 var tst = 'test.js'
 
+var concatToDot = function (what, plugin) {
+  return gulp.src(what)
+      .pipe(using())
+      .pipe(concat('.' + what))
+      .pipe(
+        gulp.dest('./'))
+}
+
 var babelify = function (what) {
   return gulp.src(what)
       .pipe(babel())
@@ -15,20 +23,31 @@ var babelify = function (what) {
       .pipe(
         gulp.dest('./'))
 }
-
-gulp.task ('test', function () {
-  babelify(tst)
-  return gulp.src('./.' + tst)
-    .pipe(mocha({ reporter: 'nyan' }))
-})
-
+var gutilLog = function (what) {
+    log("Starting '"
+      + '\u001b[36m' + what + '\u001b[0m' + "'...")
+}
 gulp.task ('watch', function () {
-  gulp.watch(['test.js', 'index.js', 'js/**/*.js'], function (e) {
-    log(e.type + ": " + e.path)
-    if (e.type == 'changed') return gulp.src(e.path)
-      .pipe(babel())
-      .pipe(concat('.' + e.path))
-      .pipe(gulp.dest('./'))
-    
+  gulp.watch(['index.js', 'src/**/*.js'], function (f) {
+    if (f.type == 'changed') {
+      log("Changed: " + f.path)
+      gutilLog("babelify")
+      return gulp.src(f.path)
+        .pipe(babel())
+        .pipe(mocha({ reporter: 'nyan' }))
+        .pipe(concat('.' + f.path))
+        .pipe(gulp.dest('./'))
+    }
   })
+  gulp.watch(['test.js', 'tst/**/*.js'], function (f) {
+    if (f.type == 'changed') {
+      log("Changed: " + f.path)
+      gutilLog("babelify")
+      return gulp.src(f.path)
+        .pipe(babel())
+        .pipe(concat('.' + f.path))
+        .pipe(gulp.dest('./'))
+    }
+  })
+  
 })
