@@ -1,5 +1,7 @@
 home/
-.test.js
+bundle.js
+bundle.tst.js
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

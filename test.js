@@ -6,14 +6,13 @@ describe('App start', () => {
     // runs before all tests in this block
   })
   
-  it(`it's noop() method returns input str`, () => {
+  it(`it's noop() method returns its input str`, () => {
     let main = require('./index.js')
     assert(
       main.noop('[app started]')
       === "[app started]")
   })
 })
-
 
 
 

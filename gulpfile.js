@@ -23,30 +23,42 @@ var babelify = function (what) {
       .pipe(
         gulp.dest('./'))
 }
-var gutilLog = function (what) {
+var couldBeGutilLog = function (what, colorCode) {
     log("Starting '"
-      + '\u001b[36m' + what + '\u001b[0m' + "'...")
+      + '\u001b[' + colorCode + 'm' + what + '\u001b[0m' + "'...")
 }
+var generateBundle = function (which, where) {
+  log("Working on " + which)
+  couldBeGutilLog("babelify + concat", 36)
+  return gulp.src(which, { entry: true })
+    .pipe(babel())
+    .pipe(concat(where))
+    .pipe(gulp.dest('./'))
+}
+var runTests = function () {
+  couldBeGutilLog("mocha", 36)
+  gulp.src('bundle.tst.js')
+    .pipe(mocha({ reporter: 'nyan' }))
+}
+
 gulp.task ('watch', function () {
+  generateBundle('index.js', 'bundle.js')
+  generateBundle('test.js', 'bundle.tst.js')
+  runTests()
+    
   gulp.watch(['index.js', 'src/**/*.js'], function (f) {
     if (f.type == 'changed') {
       log("Changed: " + f.path)
-      gutilLog("babelify")
-      return gulp.src(f.path)
-        .pipe(babel())
-        .pipe(mocha({ reporter: 'nyan' }))
-        .pipe(concat('.' + f.path))
-        .pipe(gulp.dest('./'))
+      var ret = generateBundle('index.js', 'bundle.js')
+      runTests()
+      return ret
     }
   })
   gulp.watch(['test.js', 'tst/**/*.js'], function (f) {
     if (f.type == 'changed') {
       log("Changed: " + f.path)
-      gutilLog("babelify")
-      return gulp.src(f.path)
-        .pipe(babel())
-        .pipe(concat('.' + f.path))
-        .pipe(gulp.dest('./'))
+      generateBundle('test.js', 'bundle.tst.js')
+      return compileAndTest()
     }
   })
   
