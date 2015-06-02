@@ -10,7 +10,7 @@ describe('App start', () => {
     let main = require('./bundle.js')
     assert(
       main.noop('[app started]')
-      === "[app started]" + 'e')
+      === '[app started]')
   })
 })
 

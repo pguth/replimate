@@ -24,21 +24,24 @@ var babelify = function (what) {
         gulp.dest('./'))
 }
 var couldBeGutilLog = function (what, colorCode) {
-    log("Starting '"
-      + '\u001b[' + colorCode + 'm' + what + '\u001b[0m' + "'...")
+    return ('\u001b[' + colorCode + 'm' + what + '\u001b[0m')
 }
 var generateBundle = function (which, where) {
   log("Working on " + which)
-  couldBeGutilLog("babelify + concat", 36)
+  log("Starting '" + couldBeGutilLog("babelify + concat", 36) + "'...")
   return gulp.src(which, { entry: true })
     .pipe(babel())
     .pipe(concat(where))
     .pipe(gulp.dest('./'))
 }
 var runTests = function () {
-  couldBeGutilLog("mocha", 36)
-  gulp.src('bundle.tst.js')
+  log("Starting '" + couldBeGutilLog("mocha", 36) + "'...")
+  return gulp.src('bundle.tst.js')
     .pipe(mocha({ reporter: 'nyan' }))
+    .on('error', function (err) {
+      log("Some tests by '" + couldBeGutilLog ('test.js', 36)
+      + "' failed...")
+    })
 }
 
 gulp.task ('watch', function () {
