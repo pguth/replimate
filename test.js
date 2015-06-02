@@ -6,11 +6,21 @@ describe('App start', () => {
     // runs before all tests in this block
   })
   
-  it(`it's noop() method returns its input str`, () => {
+  it( `it's noop() method returns its input str`,
+  () => {
     let main = require('./bundle.js')
     assert(
       main.noop('[app started]')
       === '[app started]')
+  })
+  it( `it gets a peerID from the broker`,
+  () => {
+  })
+  it( `generates a wordcombination from own peerID`,
+  () => {
+  })
+  it( ``,
+  () = {
   })
 })
 
