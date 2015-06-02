@@ -57,8 +57,9 @@ gulp.task ('watch', function () {
   gulp.watch(['test.js', 'tst/**/*.js'], function (f) {
     if (f.type == 'changed') {
       log("Changed: " + f.path)
-      generateBundle('test.js', 'bundle.tst.js')
-      return compileAndTest()
+      var ret = generateBundle('test.js', 'bundle.tst.js')
+      runTests()
+      return ret  
     }
   })
   

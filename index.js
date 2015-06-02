@@ -1,4 +1,5 @@
-var ex = {}
-ex.noop = function (s) { return s + 2 }
+let ex = {}
+ex.noop = function (s) { return s }
 module.exports = ex
+
 

@@ -7,10 +7,10 @@ describe('App start', () => {
   })
   
   it(`it's noop() method returns its input str`, () => {
-    let main = require('./index.js')
+    let main = require('./bundle.js')
     assert(
       main.noop('[app started]')
-      === "[app started]")
+      === "[app started]" + 'e')
   })
 })
 
