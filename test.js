@@ -19,9 +19,11 @@ describe('App start', () => {
   it( `generates a wordcombination from own peerID`,
   () => {
   })
+  /*
   it( ``,
   () = {
   })
+  */
 })
 
 
