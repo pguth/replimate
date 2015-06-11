@@ -1,23 +1,34 @@
 let log = require('gulp-util')
 let assert = require('better-assert')
 
-describe('App start', () => {
-  before(() => {
+let main = require('./bundle.js')
+
+
+describe(`First test:`, () =>{
+  it( `It's noop() method returns its input str`,
+    () =>{
+      assert(
+        main.noop('[app started]')
+        === '[app started]')
+    })
+})
+
+describe(`WebRTC:`, () =>{
+  before(() =>{
     // runs before all tests in this block
   })
-  
-  it( `it's noop() method returns its input str`,
-  () => {
-    let main = require('./bundle.js')
-    assert(
-      main.noop('[app started]')
-      === '[app started]')
+  it(`Detects if there is WebRTC support.`, () =>{
+    assert(x=>{
+       
+    })
   })
-  it( `it gets a peerID from the broker`,
-  () => {
+  it( `Registers w/ the broker`,
+  () =>{
+    assert(false)
   })
-  it( `generates a wordcombination from own peerID`,
-  () => {
+  it( `Generates a broker unique wordcombination`,
+  () =>{
+    assert(false)
   })
   /*
   it( ``,
@@ -25,6 +36,17 @@ describe('App start', () => {
   })
   */
 })
+describe(`Gossiping:`, () =>{
+  before(() =>{})
+  
+})
 
+describe(`Database:`, () =>{
+  before(() =>{})
+  
+})
 
-
+describe(`UI:`, () =>{
+  before(() =>{})
+  
+})

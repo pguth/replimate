@@ -37,7 +37,6 @@ ex.couldBeGutilLog = function (what, colorCode) {
 }
 
 ex.generateBundle = function (which, where) {
-  log("Working on " + which)
   log("Starting '" + ex.couldBeGutilLog("babelify + concat", 36) + "'...")
   gulp.src(which, { entry: true })
     .pipe(babel())
@@ -47,12 +46,11 @@ ex.generateBundle = function (which, where) {
 
 ex.runTests = function () {
   log("Starting '" + ex.couldBeGutilLog("mocha", 36) + "'...")
-  return gulp.src('bundle.tst.js')
+  setTimeout(function () { gulp.src('bundle.tst.js')
     .pipe(mocha({ reporter: 'nyan' }))
     .on('error', function (err) {
-      log("Some tests by '" + ex.couldBeGutilLog ('test.js', 36)
-      + "' failed...")
-    })
+      return null
+    })}, 100) // todo: get rid of timeout using `async`
 }
 
 module.exports = ex
